@@ -28,6 +28,7 @@ namespace Unity_DesignPatterns.Concretes
                 yield return _sleep;
                 var obj = _pool.GetPoolObject();
                 obj.transform.position = _position.position;
+                Debug.Log("Object Pool : Object is running!");
             }
 
         }
