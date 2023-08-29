@@ -1,8 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity_DesignPatterns.Concretes;
 using UnityEngine;
 
-namespace Unity_DesignPatterns.Concretes
+namespace Unity_DesignPatterns.Abstracts
 {
     public interface ISubject
     {

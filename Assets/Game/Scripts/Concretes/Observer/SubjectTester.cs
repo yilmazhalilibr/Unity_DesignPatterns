@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity_DesignPatterns.Abstracts;
 using UnityEngine;
 
 namespace Unity_DesignPatterns.Concretes
@@ -14,15 +15,16 @@ namespace Unity_DesignPatterns.Concretes
         }
         private void Start()
         {
-            StartCoroutine(Notifier());
         }
         private void OnEnable()
         {
             _observerManager.RegisterSubject(this);
+            StartCoroutine(Notifier());
         }
         private void OnDisable()
         {
             _observerManager.UnregisterSubject(this);
+            StopCoroutine(Notifier());
         }
         public void OnNotify()
         {

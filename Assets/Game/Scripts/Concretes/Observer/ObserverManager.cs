@@ -9,12 +9,25 @@ namespace Unity_DesignPatterns.Concretes
     {
         Dictionary<ISubject, IObserver> _dict = new Dictionary<ISubject, IObserver>();
         List<ISubject> _subjects = new List<ISubject>();
-
+        List<IObserver> _observers = new List<IObserver>();
 
         public void RegisterSubject(ISubject subject)
         {
             _subjects.Add(subject);
 
+            if (_dict.Count != _subjects.Count)
+            {
+                _dict.Clear();
+                int i = 0;
+                foreach (IObserver obs in _observers)
+                {
+                    if (_subjects[i].Type == obs.NotificationType && _subjects[i] != null)
+                    {
+                        _dict.TryAdd(_subjects[i], obs);
+                        i++;
+                    }
+                }
+            }
             //OnEnablaOnDisable..
         }
         public void UnregisterSubject(ISubject subject)
@@ -25,6 +38,7 @@ namespace Unity_DesignPatterns.Concretes
 
         public void RegisterObserver(IObserver observer, NotificationType notificationType)
         {
+            _observers.Add(observer);
             foreach (var i in _subjects)
             {
                 if (i.Type == notificationType)
