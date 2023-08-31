@@ -5,11 +5,16 @@ namespace Unity_DesignPatterns.Concretes
 {
     public class MVPPresenter : MonoBehaviour
     {
+        [SerializeField] GameObject _body;
         MVPModel _model;
 
         private void Awake()
         {
             _model = new MVPModel();
+        }
+        private void Start()
+        {
+            _body.GetComponent<MeshRenderer>().material.color = _model.Color;
         }
         private void OnEnable()
         {
